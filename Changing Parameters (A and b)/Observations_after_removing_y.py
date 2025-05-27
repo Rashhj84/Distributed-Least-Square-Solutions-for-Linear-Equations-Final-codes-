@@ -136,47 +136,10 @@ cap = 10
 update_duration = 100000
 # Iterative upates
 
-# print(LL)
-# print(np.linalg.det(LL))
-# LL_inv = np.linalg.inv(LL)
-# print(np.dot(LL,LL_inv))
-
 oe = np.array([[1]]*q)
 ol = np.array([[1]]*p)
-#print(oe)
 one = np.kron(oe,I2)
 o_ = np.kron(ol,I2)
-#print(one)
-
-# v_vect = np.array([
-#     [0.8660254037844387],
-#     [0.2886751345948129],
-#     [0.28867513459481287],
-#     [0.2886751345948129]
-# ])
-
-# v_vect = np.array([
-#     [3],
-#     [1],
-#     [1],
-#     [1]
-# ])
-
-# # v_vect = np.array([
-# #     [1],
-# #     [1],
-# #     [1],
-# #     [1]
-# # ])
-
-# print("------",np.dot(L,v_vect))
-
-# v_k = np.kron(v_vect,oe)
-# V = np.diag(v_k.flatten())
-
-# v_k1 = np.kron(v_vect,ol)
-# V1 = np.diag(v_k1.flatten())
-
 
 
 xvals = [x.tolist()]
@@ -185,13 +148,6 @@ sols = [sol.tolist()]
 print(sol.T)
 
 for i in range(iterations):
-    #x_change = (-1 * alpha) * np.dot(LL, ld) - (n * beta) * np.dot(A.T, y)
-    # AT = np.dot(A.T,one)
-    # axb = np.dot(A,x) - b
-    # ot = np.dot(one.T,axb)
-    # x_change = (-1 * alpha) * np.dot(LL, ld) - (beta)*np.dot(AT,ot)
-    #x_change = (-1 * alpha) * np.dot(LL, ld) -(beta)*(np.dot(np.dot(A.T,one),np.dot(one.T,(np.dot(A,x)-b))))
-    #x_change =  -1*np.dot(LL, ld) - (2)*(np.dot(np.dot(A.T,one),np.dot(one.T,(np.dot(A,x)-b)))) - alpha*np.dot(LL, x)
     
     V = np.diag(v.flatten())
     V_dash = np.diag(v_dash.flatten())
@@ -200,25 +156,7 @@ for i in range(iterations):
     #y_change = -1*np.dot(np.dot(LL1,V_dash),y) + np.dot(A,-1*np.dot(np.dot(LL,V), ld) - (2*n*beta)*(np.dot(A.T,y)) - alpha*np.dot(np.dot(LL,V), x))
     v_change = -np.dot(LL,v)
     v_dash_change = -np.dot(LL1,v_dash)
-    #print(np.dot(LL1,y).shape,(alpha*np.dot(LL, x)).shape,y_change.shape)
-    # print(-1*np.dot(LL, ld))
-    # print((2*n*beta)*(np.dot(A.T,y)))
-    # print(alpha*np.dot(LL, x))
     
-    #y_change = (-1 * alpha) * np.dot(A, np.dot(LL, ld)) - (n * beta) * np.dot(np.dot(A, A.T), y) - (gamma) * (np.dot(LL1, y))
-    
-    # print("-----",y[0:5])
-    # print("-------------",-1*np.dot(LL1,y))
-    
-    # print(i)
-    # print("x up",x_change[0:4])
-    # print("y up",y_change[0:5])
-    # print("ld up",l_change[0:4])
-    # print("gap")
-    # print("norm",np.dot(A,- (2*n*beta)*(np.dot(A.T,y)))[0:5])
-    # print("v1",-1*np.dot(LL1,y)[0:5])
-    # print("v2",-1*np.dot(A,- alpha*np.dot(LL, x))[0:5])
-    # print("v3",np.dot(A,-1*np.dot(LL, ld))[0:5])
     
     
     x = x + delta * x_change
@@ -226,50 +164,6 @@ for i in range(iterations):
     # y = y + delta * y_change
     v = v + delta * v_change
     v_dash = v_dash + delta * v_dash_change
-    
-    
-    # print(i)
-    #print(x.T)
-    # print(ld.T)
-    # print(y.T)
-    
-    # if(i==100000):
-    #     A1 = np.array( [[4, 5, -5, -5], [-1, 2, -3, -5], [-1, -4, -1, -1], [-2, -5, 0, 2], [-4, 3, 4, -4]] )
-    #     A2 = np.array( [[-5, 3, 5, 4], [0, -4, 0, 4], [3, 3, 4, -1], [-5, -4, 5, -2], [-4, -2, 2, 3]] )
-    #     A3 = np.array( [[-1, 0, 1, -5], [1, 3, -4, -1], [-2, 3, 3, 2], [-2, 4, -5, 2], [-1, 5, 0, 5]] )
-    #     A4 = np.array( [[7, -7, 1, 15], [2, -1, 8, 5], [9, 8, -4, 1], [10, 12, 6, 2], [11, -2, 2, -3]] )
-    #     A = block_diag(A1, A2, A3, A4)
-    #     print(A1+A2+A3+A4)
-    #     b1 = np.array( [[7], [11], [4], [3], [1]] )
-    #     b2 = np.array( [[3], [-4], [13], [15], [6]] )
-    #     b3 = np.array( [[6], [5], [-5], [7], [-2]] )
-    #     b4 = np.array( [[-6], [60], [39], [-5], [97]] )
-    #     b = np.concatenate([b1, b2, b3, b4])    
-    #     print(b1+b2+b3+b4)
-    #     y = np.dot(A,x)-1 * b
-        # x = np.array([[0]] * (n * len(A1[0])))
-        # ld = np.array([[0]] * (n * len(A1[0])))
-        # print(y)
-        
-    
-    # if(i==100000):
-        # Adj = np.array([
-        #     [0, 1, 0, 1],
-        #     [0, 0, 1, 0],
-        #     [1, 1, 0, 1],
-        #     [0, 0, 1, 0]
-        # ])
-
-        # Din = np.array([
-        #     [1, 0, 0, 0],   
-        #     [0, 2, 0, 0],
-        #     [0, 0, 2, 0],
-        #     [0, 0, 0, 2]
-        # ])
-        # L = Din - Adj
-        # print(L)
-        # LL = np.kron(L, I1)
-        # LL1 = np.kron(L, I2)
     
     if(i==0):
         A1_ = A1
