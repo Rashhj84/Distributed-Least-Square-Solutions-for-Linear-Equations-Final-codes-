@@ -1,0 +1,2 @@
+# Changing Parameters
+This folder contains all the code for the changes that we tried to make in the A and b matrices and for the observations of the plots that we got. We observed that our algorithm is robust towards changing the graph structure like removing edges or adding edges. But it is not robust for the changes in A and b matrices. The observations of the changes is being included in the codes. 
