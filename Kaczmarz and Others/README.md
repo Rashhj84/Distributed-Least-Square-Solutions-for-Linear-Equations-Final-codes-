@@ -1,7 +1,7 @@
 # Extra Files
 This folder contains the files:
 
-# modified_Kaczmarz.py
+# modified_Kacz.py
 It contains the algorithm to find the least square solution using the Kaczmarz method
 
 # rand_mat_gen.py
