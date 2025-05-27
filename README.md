@@ -1,1 +1,1 @@
-# Distributed-Least-Square-Solutions-for-Linear-Equations-Final-codes-
+# Distributed Least Square Solutions for Linear Equations (Final codes)
